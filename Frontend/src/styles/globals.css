@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Color System - Light Mode */
+    --color-background: 248 250 252;
+    --color-surface: 255 255 255;
+    --color-surface-elevated: 255 255 255;
+    --color-border: 226 232 240;
+    --color-text-primary: 15 23 42;
+    --color-text-secondary: 71 85 105;
+    --color-text-tertiary: 148 163 184;
+    
+    /* Primary - Electric Violet/Blue Gradient */
+    --color-primary: 124 58 237;
+    --color-primary-hover: 109 40 217;
+    --color-primary-light: 139 92 246;
+    
+    /* Status Colors - More Playful! */
+    --color-success: 34 197 94;
+    --color-success-light: 74 222 128;
+    --color-warning: 251 191 36;
+    --color-warning-light: 252 211 77;
+    --color-danger: 251 146 60;
+    --color-danger-light: 253 186 116;
+    
+    /* Rank Colors */
+    --color-bronze: 205 127 50;
+    --color-silver: 192 192 192;
+    --color-gold: 255 215 0;
+    --color-platinum: 229 228 226;
+    --color-diamond: 185 242 255;
+    
+    /* Gaming Colors */
+    --color-xp: 251 191 36;
+    --color-energy: 59 130 246;
+    --color-rare: 168 85 247;
+    --color-epic: 236 72 153;
+    --color-legendary: 234 179 8;
+  }
+
+  .dark {
+    /* Color System - Dark Mode */
+    --color-background: 15 23 42;
+    --color-surface: 30 41 59;
+    --color-surface-elevated: 51 65 85;
+    --color-border: 51 65 85;
+    --color-text-primary: 248 250 252;
+    --color-text-secondary: 203 213 225;
+    --color-text-tertiary: 148 163 184;
+  }
+
+  * {
+    @apply border-[rgb(var(--color-border))];
+  }
+
+  body {
+    @apply bg-[rgb(var(--color-background))] text-[rgb(var(--color-text-primary))];
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    @apply text-3xl;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h2 {
+    @apply text-2xl;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  h3 {
+    @apply text-xl;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h4 {
+    @apply text-lg;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(51, 65, 85, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, rgb(124, 58, 237) 0%, rgb(59, 130, 246) 100%);
+  }
+
+  .gradient-rank-gold {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  }
+
+  .gradient-rank-platinum {
+    background: linear-gradient(135deg, #E5E4E2 0%, #71706E 100%);
+  }
+
+  .gradient-rank-diamond {
+    background: linear-gradient(135deg, #B9F2FF 0%, #00D4FF 100%);
+  }
+
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Gaming Effects */
+  .gaming-card {
+    position: relative;
+    background: rgb(var(--color-surface));
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  .gaming-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(59, 130, 246, 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .quest-card {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 2px solid rgba(124, 58, 237, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .quest-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  
+  .xp-orb {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, rgb(251, 191, 36) 0%, rgb(245, 158, 11) 100%);
+    border-radius: 9999px;
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 40px rgba(251, 191, 36, 0.3);
+    animation: pulse-glow 2s infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 40px rgba(251, 191, 36, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.7), 0 0 60px rgba(251, 191, 36, 0.5);
+      transform: scale(1.05);
+    }
+  }
+  
+  .level-badge {
+    background: linear-gradient(135deg, rgb(124, 58, 237) 0%, rgb(109, 40, 217) 100%);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.6), 0 0 40px rgba(124, 58, 237, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .streak-flame {
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8)) drop-shadow(0 0 20px rgba(245, 158, 11, 0.6));
+    animation: flicker 1.5s infinite alternate;
+  }
+  
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  
+  .overdue-glow {
+    border: 2px solid rgba(251, 146, 60, 0.4);
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.2), inset 0 0 20px rgba(251, 146, 60, 0.05);
+    animation: warning-pulse 2s infinite;
+  }
+  
+  @keyframes warning-pulse {
+    0%, 100% {
+      border-color: rgba(251, 146, 60, 0.4);
+      box-shadow: 0 0 20px rgba(251, 146, 60, 0.2), inset 0 0 20px rgba(251, 146, 60, 0.05);
+    }
+    50% {
+      border-color: rgba(251, 146, 60, 0.6);
+      box-shadow: 0 0 30px rgba(251, 146, 60, 0.4), inset 0 0 30px rgba(251, 146, 60, 0.1);
+    }
+  }
+  
+  .corner-decoration {
+    position: relative;
+  }
+  
+  .corner-decoration::before,
+  .corner-decoration::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(124, 58, 237, 0.4);
+  }
+  
+  .corner-decoration::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .corner-decoration::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+  
+  .achievement-glow {
+    position: relative;
+    animation: achievement-shine 3s infinite;
+  }
+  
+  @keyframes achievement-shine {
+    0%, 100% {
+      box-shadow: 0 0 15px currentColor;
+    }
+    50% {
+      box-shadow: 0 0 25px currentColor, 0 0 40px currentColor;
+    }
+  }
+}

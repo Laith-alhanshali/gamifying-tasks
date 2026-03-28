@@ -1,0 +1,2 @@
+1;Laith;ADMIN;55;Bronze;1;1;2026-01-11;First Blood
+2;Aisha;PLAYER;160;Silver;1;1;2025-11-20;Rookie Scorer (100 pts),First Blood
